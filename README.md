@@ -9,7 +9,9 @@ Tout en se déplaçant, l'app fournira des proposition de lieux d'intérêts.
 Les lieux d'intérêts sont organisés en imbrication suivant le niveau de généralité de l'information par exemple : 
 * Je suis dans Toulouse => accès à de information générale sur la ville.
 * Sur mon ecran apparaissent des points d'intérêts sur une carte avec des directions générales. 
-* Suite au déplacement de l'utilisateur un pop-up apparait quand on arrive devant le PI avec de l'information spécifique.
+* Pendant le déplacement de l'utilisateur un pop-up/notif peu apparaitre quand on passe devant le PI avec de l'information spécifique.
+* Une fois devant le PI on débloque l'information spécifique qui ne sera accéssible que si devant et le restera pour l'utilisateur.
+* Un système de point à mettre en place en fonctions des PI débloqués.
 * Plusieurs classes de PI :
 	* général
  	* faits divers
