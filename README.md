@@ -1,5 +1,5 @@
 # fil_rouge
-Nom : Explorat
+Nom : ExploRat
 
 Service : aide à la découverte d'une zone géographique en fournissant de l'information historique.
 
