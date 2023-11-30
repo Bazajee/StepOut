@@ -1,4 +1,4 @@
-# fil_rouge
+# StepOut
 Nom : StepOut
 
 Service : aide à la découverte d'une zone géographique en fournissant de l'information historique contextuelle.
