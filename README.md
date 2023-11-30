@@ -10,7 +10,7 @@ Tout en se déplaçant, l'app fournira des proposition de lieux d'intérêts.
 > Scénario 1.0:
 >
 >* Je suis dans Toulouse. Je regarde mon appli qui me géolocalise.
->* Sur mon ecran apparaissent des points d'intérêts sur une carte. Il y a différents types de PI, des principaux et des secondaires.
+>* Sur mon ecran apparaissent des points d'intérêts sur la carte. Il y a différents types de PI, des principaux et des secondaires.
 >* Un PI correspond à des monuments/lieux incontournables de Toulouse! Les PI principaux servent à générer un déplacement qui peut susciter à l'envi d'autre visite de PI secondaires.
 >* Pendant mon déplacement un pop-up peu apparaitre quand je passe prêt d'un PI m'invitant à débloquer et conslté de l'information spécifique à ce PI. 
 >* Je peux débloque l'information spécifique lié au lieu. Information sur le monument: généralités/histoires/images.
