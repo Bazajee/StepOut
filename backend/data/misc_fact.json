@@ -2,7 +2,7 @@
     "0":{
         "id":"0",
         "poi_id":"8",
-        "is_main": true,
+        "is_main": false,
         "name":"L’ancienne morgue de la Daurade",
         "source": "https://www.le24heures.fr/2021/02/15/visite-guidee-du-toulouse-insolite/",
         "description": "A cet endroit se trouvait la morgue de la Garonne, où les corps repêchés dans le fleuve étaient conservés pour y être identifiés. Ils étaient conservés à l’époque grâce à un petit cours d’eau enfoui qui les humidifiait au goutte-à-goutte pour les tenir au frais. Ce petit cours d’eau est aujourd’hui encore utilisé pour arroser les espaces verts. La source de la Daurade a depuis été déviée, mais elle est toujours visible à travers une vitre, au milieu de la place. Oui, la morgue de la Daurade n’accueille plus de dépouilles mais plutôt des bons vivants d’une tout autre époque.",

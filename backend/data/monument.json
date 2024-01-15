@@ -2,7 +2,7 @@
     "0":{
         "id":"0",
         "poi_id":"0",
-        "is_main": false,
+        "is_main": true,
         "name":"Ancien hôtel de Bonfontan",
         "author": "Ortet (maître de l'oeuvre)",
         "périod":"3e quart 18e siècle"
