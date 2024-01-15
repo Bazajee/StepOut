@@ -4,6 +4,7 @@
         "poi_id":"0",
         "is_main": true,
         "name":"Ancien hôtel de Bonfontan",
+        "description ": "Hôtel de style Louis XVI, construit en 1771. Le balcon est signé Ortet.",
         "author": "Ortet (maître de l'oeuvre)",
         "périod":"3e quart 18e siècle"
         },
@@ -12,6 +13,7 @@
         "poi_id":"1",
         "is_main": true,
         "name":"Hôtel de ville appelé Le Capitole",
+        "description": "Ancienne maison de ville datant du 12e siècle, avec un portail Renaissance dans la cour Henri IV. Les galeries latérales sont construites par l'architecte Pierre Souffron entre 1602 et 1606. Une nouvelle façade est réalisée par l'architecte Guillaume Cammas entre 1750 et 1760. La façade orientale est l'oeuvre de l'architecte Henri Lefuel en 1883. La salle des Illustres est réalisée de 1892 à 1898 par le peintre et sculpteur Paul Pujol avec une pléiade d'artistes. La salle des pas perdus est décorée par le peintre Henri Martin entre 1903 et 1906. Le grand escalier est reconstruit en 1912 et décoré par le peintre Jean-Paul Laurens avec ses fils Jean-Pierre et Paul-Albert. La salle des mariages est décorée vers 1914 par le peintre Paul Gervais. La salle du Conseil municipal, enfin, terminée en 1935, et décorée par les peintres A. P. Lupiac, Henri Bonis, Edouard Debat-Ponsan, Constantin Font, Edmond Yarz, André Roucolle, J. Courapied et William Didier-Pouget.",
         "author": "Cammas Guillaume (architecte);Souffron Pierre (architecte);Lefuel Henri (architecte);Pujol Paul (peintre);Martin Henri (peintre);Laurens Jean-Paul (peintre);Laurens Jean-Pierre (peintre);Laurens Paul-Albert (peintre);Lupiac A. P. (peintre);Bonis Henri (peintre);Debat-Ponsan Edouard (peintre);Font Constantin (peintre);Yarz Edmond (peintre);Roucolle André (peintre);Courapied J. (peintre);Didier-Pouget William (peintre);Gervais Paul (peintre)",
         "périod":"12e siècle;15e siècle;16e siècle;17e siècle;18e siècle;4e quart 19e siècle;1er quart 20e siècle;2e quart 20e siècle"
         },
@@ -20,6 +22,7 @@
         "poi_id":"7",
         "is_main": false,
         "name":"Ancien palais archiépiscopal",
+        "description": "Après avoir vécu avec leurs chanoines dans l'enceinte du cloître, les archevêques de Toulouse établirent leur résidence au-delà de la tour Mascaron. Bâti du 14e au 16e siècle, le premier évêché est détruit à la fin du 17e siècle et reconstruit en 1691. De cette époque reste le bâtiment correspondant à l'aile perpendiculaire à oculi sur jardin qui comportait, au premier étage, une chapelle. La reconstruction se poursuit en 1693 sous la direction de l'architecte d'Aviler qui organise le plan actuel en U autour d'une cour centrale. A partir de 1776, l'architecte Jean-Arnaud Raymond exécute le bâtiment entre les n° 7 et 13, destiné à recevoir la 'chambre souveraine du clergé' et les archives diocésaines.",
         "author": "D'Aviler Augustin-Charles;(architecte);Raymond Jean-Arnaud (architecte)",
         "périod":"4e quart 17e siècle;1er quart 18e siècle"
         }
