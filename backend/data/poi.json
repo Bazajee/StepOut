@@ -1,0 +1,73 @@
+{
+    "0": {
+        "id": 0,
+        "monument_id": 0,
+        "misc_id": "none",
+        "adresse_forme_editoriale": "41 rue Croix-Baragnon ; anciennement 23 rue Saint-Etienne",
+        "position": {
+            "lon": "1.44831048815419",
+            "lat": "43.5997114776359"
+        }
+    },
+    "1": {
+        "id": 1,
+        "monument_id": 1,
+        "misc_id": "none",
+        "adresse_forme_editoriale": "place du Capitole",
+        "position": {
+            "lon": "1.44423795256864",
+            "lat": "43.6044703168776"
+        }
+    },
+    "7": {
+        "id": 7,
+        "monument_id": 1,
+        "misc_id": "none",
+        "adresse_forme_editoriale": "place Saint-Etienne",
+        "position": {
+            "lon": "1.45001335701579",
+            "lat": "43.59913948622981"
+        }
+    },
+    "8": {
+        "id": 8,
+        "monument_id": "none",
+        "misc_id": 0,
+        "adresse_forme_editoriale": "Quai de la Daurade",
+        "position": {
+            "lon": "1.4395270695450704",
+            "lat": "43.60130051139837"
+        }
+    },
+    "9": {
+        "id": 9,
+        "monument_id": "none",
+        "misc_id": 1,
+        "adresse_forme_editoriale": " 1 Rue des Martyrs de la Libération",
+        "position": {
+            "lon": "1.453425460883219",
+            "lat": "43.591928469780726"
+        }
+    },
+    "10": {
+        "id": 10,
+        "monument_id": "none",
+        "misc_id": 2,
+        "adresse_forme_editoriale": " 59 rue d’Alsace-Lorraine",
+        "position": {
+            "lon": "1.4456902783773626",
+            "lat": "43.60615287009547 "
+        }
+    },
+    "11": {
+        "id": 11,
+        "monument_id": "none",
+        "misc_id": 3,
+        "adresse_forme_editoriale": " 30 Rue de la Dalbade",
+        "position": {
+            "lon": "1.4421984423307637",
+            "lat": "43.59768237637071"
+        }
+
+    }
+} 

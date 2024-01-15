@@ -1,0 +1,26 @@
+{
+    "0":{
+        "id":"0",
+        "poi_id":"0",
+        "is_main": false,
+        "name":"Ancien hôtel de Bonfontan",
+        "author": "Ortet (maître de l'oeuvre)",
+        "périod":"3e quart 18e siècle"
+        },
+    "1":{
+        "id":"1",
+        "poi_id":"1",
+        "is_main": true,
+        "name":"Hôtel de ville appelé Le Capitole",
+        "author": "Cammas Guillaume (architecte);Souffron Pierre (architecte);Lefuel Henri (architecte);Pujol Paul (peintre);Martin Henri (peintre);Laurens Jean-Paul (peintre);Laurens Jean-Pierre (peintre);Laurens Paul-Albert (peintre);Lupiac A. P. (peintre);Bonis Henri (peintre);Debat-Ponsan Edouard (peintre);Font Constantin (peintre);Yarz Edmond (peintre);Roucolle André (peintre);Courapied J. (peintre);Didier-Pouget William (peintre);Gervais Paul (peintre)",
+        "périod":"12e siècle;15e siècle;16e siècle;17e siècle;18e siècle;4e quart 19e siècle;1er quart 20e siècle;2e quart 20e siècle"
+        },
+    "3":{
+        "id":"3",
+        "poi_id":"7",
+        "is_main": false,
+        "name":"Ancien palais archiépiscopal",
+        "author": "D'Aviler Augustin-Charles;(architecte);Raymond Jean-Arnaud (architecte)",
+        "périod":"4e quart 17e siècle;1er quart 18e siècle"
+        }
+}
