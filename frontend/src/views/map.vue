@@ -1,35 +1,67 @@
 <template>
-   <div class="relative h-full w-full"> 
-      <div class=" absolute top-0 z-0" style="height:100vh; width:100vw;" >
-         <l-map :options="{zoomControl: false}" :use-global-leaflet="false" v-model:zoom="zoom" :center="[43.604479, 1.445260]">
-            
-            <l-tile-layer url="https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png" layer-type="base"
-               name="OpenStreetMap"></l-tile-layer>
-         </l-map>
-      </div>
-      <div class="" style="height:10vh; width:100vw;">
-         
-            <filterBar class="" ></filterBar>
-         
+      <div class="h-full w-full relative">
 
-         <!-- <FilterBar class=" hidden w-4/6  bg-white rounded-lg "></FilterBar> -->
+         <div class="absolute top-0">
+            <l-map class="z-0" :options="options" :zoom="zoom" :center="center" @ready="load" @update:zoom="zoomUpdated" @update:center="centerUpdated" @update:bounds="boundsUpdated">
+               <l-tile-layer :url="url" :attribution="attribution"></l-tile-layer>
+               <l-circle-marker :lat-lng="circle.center" :radius="circle.radius" :color="circle.color"/>
+            </l-map>
+         </div>
+         <div class="h-fit z-10 bg-slate-200">
+            <span>Center: {{ center }}</span>
+            <span>Zoom: {{ zoom }}</span>
+            <span>Bounds: {{ bounds }}</span>
+         </div>
+         <div class="" style="height:10vh; width:100vw;">
+            <filterBar class="" ></filterBar>
+         </div>
       </div>
-   </div>
 </template>
  
 <script setup>
+   import { LCircleMarker, LMap, LTileLayer } from '@vue-leaflet/vue-leaflet';
+   import { ref } from 'vue'
+   import filterBar from '../components/filterBar.vue';
+
+   const url = ref('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png')
+   const attribution = ref('&copy; <a target="_blank" href="http://osm.org/copyright">OpenStreetMap</a> contributors')
+   const zoom = ref(16)
+   const bounds = ref(null)
+
+   const center = ref([0, 0])
+   const circle = ref({
+        center: [0, 0],
+        radius: 10,
+        color: 'blue'
+      },)
+
+   const options = ref({zoomControl: false})
+   
+   const successCallback = (position) => {
+      const { latitude, longitude } = position.coords;
+      center.value = [latitude, longitude];
+      circle.value.center = [latitude, longitude];
+      console.log(latitude, longitude);
+   };
+
+   const errorCallback = (error) => {
+      console.log(error);
+   };
+
+   function load() { navigator.geolocation.getCurrentPosition(successCallback, errorCallback); }
 
 
-import { ref } from 'vue'
-import { useRoute } from 'vue-router'
-import router from '/src/router'
-import "leaflet/dist/leaflet.css"
-import { LMap, LTileLayer } from "@vue-leaflet/vue-leaflet"
+   function zoomUpdated(NewZoom) {
+      zoom.value = NewZoom;
+   }
 
-import filterBar from "/src/components/filterBar.vue"
-// import FilterBar from "/src/components/FilterBar.vue"
+   function centerUpdated (NewCenter) {
+      center.value = NewCenter;
+   }
 
-const zoom = ref(14)
+   function boundsUpdated (NewBounds) {
+      bounds.value = NewBounds;
+   }
 
 
 </script> 
