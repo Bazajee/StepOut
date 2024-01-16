@@ -41,7 +41,7 @@
       console.log(error);
    };
 
-   function load() { navigator.geolocation.watchPosition(successCallback, errorCallback); }
+   function load() { navigator.geolocation.getCurrentPosition(successCallback, errorCallback); }
 
 
    function zoomUpdated(NewZoom) {
