@@ -5,7 +5,7 @@
          <span>Zoom: {{ zoom }}</span>
          <span>Bounds: {{ bounds }}</span>
       </div>
-      <l-map class="z-0" :options="options" :zoom="zoom" :center="center" @ready="load" @update:zoom="zoomUpdated" @update:center="centerUpdated" @update:bounds="boundsUpdated">
+      <l-map class="z-0" :use-global-leaflet="false" :options="options" :zoom="zoom" :center="center" @ready="load" @update:zoom="zoomUpdated" @update:center="centerUpdated" @update:bounds="boundsUpdated">
          <l-tile-layer :url="url" :attribution="attribution"></l-tile-layer>
          <l-circle-marker :lat-lng="circle.center" :radius="circle.radius" :color="circle.color"/>
       </l-map>
