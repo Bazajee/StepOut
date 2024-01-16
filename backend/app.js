@@ -9,7 +9,7 @@ const __dirname = dirname(__filename);
 
 const app = express();
 
-app.get('/monument', (req, res) => {
+app.get('/api/monument', (req, res) => {
     const filePath = join(__dirname, 'data/monument.json');
     console.log(filePath);
     res.sendFile(filePath, (err) => {
@@ -20,7 +20,7 @@ app.get('/monument', (req, res) => {
     });
 });
 
-app.get('/misc_fact', (req, res) => {
+app.get('/api/misc_fact', (req, res) => {
 	const filePath = join(__dirname, 'data/misc_fact.json');
 	console.log(filePath);
 	res.sendFile(filePath, (err) => {
@@ -31,7 +31,7 @@ app.get('/misc_fact', (req, res) => {
 	});
 });
 
-app.get('/poi', (req, res) => {
+app.get('/api/poi', (req, res) => {
 	const filePath = join(__dirname, 'data/poi.json');
 	console.log(filePath);
 	res.sendFile(filePath, (err) => {
