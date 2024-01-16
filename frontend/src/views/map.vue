@@ -1,27 +1,25 @@
 <template>
-      <div class="h-full w-full relative">
+   <div class=" h-screen">
 
-         <div class="absolute top-0">
-            <l-map class="z-0" :options="options" :zoom="zoom" :center="center" @ready="load" @update:zoom="zoomUpdated" @update:center="centerUpdated" @update:bounds="boundsUpdated">
-               <l-tile-layer :url="url" :attribution="attribution"></l-tile-layer>
-               <l-circle-marker :lat-lng="circle.center" :radius="circle.radius" :color="circle.color"/>
-            </l-map>
-         </div>
-         <div class="h-fit z-10 bg-slate-200">
-            <span>Center: {{ center }}</span>
-            <span>Zoom: {{ zoom }}</span>
-            <span>Bounds: {{ bounds }}</span>
-         </div>
-         <div class="" style="height:10vh; width:100vw;">
-            <filterBar class="" ></filterBar>
-         </div>
+      <l-map class="absolute z-0" :use-global-leaflet="false" :options="options" :zoom="zoom" :center="center" @ready="load" @update:zoom="zoomUpdated" @update:center="centerUpdated" @update:bounds="boundsUpdated">
+         <l-tile-layer :url="url" :attribution="attribution"></l-tile-layer>
+         <l-circle-marker :lat-lng="circle.center" :radius="circle.radius" :color="circle.color"/>
+      </l-map>
+      <div class="relative h-fit  top-0 z-10 bg-slate-200">
+         <span>Center: {{ center }}</span>
+         <span>Zoom: {{ zoom }}</span>
+         <span>Bounds: {{ bounds }}</span>
       </div>
+      <div class="">
+         <FilterBar></FilterBar>
+      </div>
+   </div>
 </template>
- 
+
 <script setup>
    import { LCircleMarker, LMap, LTileLayer } from '@vue-leaflet/vue-leaflet';
    import { ref } from 'vue'
-   import filterBar from '../components/filterBar.vue';
+   import FilterBar from '../components/filterBar.vue';
 
    const url = ref('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png')
    const attribution = ref('&copy; <a target="_blank" href="http://osm.org/copyright">OpenStreetMap</a> contributors')
@@ -63,5 +61,4 @@
       bounds.value = NewBounds;
    }
 
-
-</script> 
+</script>

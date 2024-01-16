@@ -6,12 +6,12 @@
             <img src="/src/assets/list-thin-svgrepo-com.svg" alt="">
          </button>
       </div>
-      <div v-if="isMenuVisible" class=" flex h-3/4 z-40 w-5/6 bg-white justify-center items-center rounded-l">
+      <div v-if="isMenuVisible" class=" flex h-3/4 z-40 w-5/6 bg-white justify-center items-center rounded-l overflow-x-scroll">
          <ul class= "flex  text-black rounded-lg gap-x-4">
                <li v-for="filter in filters" :key="filter.id" class="flex rounded-full has-[:checked]:bg-indigo-50 has-[:checked]:text-indigo-900 has-[:checked]:ring-indigo-200 ">
                   <label class="flex gap-2" :for="filter.id"  >
                      <span> {{ filter.text }}</span>
-                     <input :id="filter.id" type="checkbox" v-model="filter.done">
+                     <input :id="filter.id" type="checkbox" v-model="filter.done" class="hidden">
                   </label> 
                </li>
          </ul>
@@ -34,6 +34,8 @@ const isMenuVisible = ref(false)
 const filters = ref([
   { id: 1, text: 'Monument', done: false },
   { id: 2, text: 'Misc fact', done: false },
+  { id: 3, text: 'Monument', done: false },
+
 ])
 
 function click () {
