@@ -55,7 +55,7 @@ export const pois = computed(() => {
             console.log(poilist)
             // Populate the id2poi reference with fetched poi data
             for (const poi of Object.values(poilist)) {
-                id2poi.value[poi.poi_id] = poi
+                id2poi.value[poi.id] = poi
             }
             // Set poiList to true to indicate that the data is ready
             poisListReady.value = true
