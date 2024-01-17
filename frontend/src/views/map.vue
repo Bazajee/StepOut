@@ -6,8 +6,8 @@
          <l-circle-marker :lat-lng="circle.center" :radius="circle.radius" :color="circle.color"/>
 
 
-         <PoiList></PoiList>
-         <monumentIcon :zoom="zoom"/>
+         <PoiList :zoom="zoom"></PoiList>
+
 
          </l-map>
       <div class="relative h-fit  top-0 z-10 bg-slate-200">

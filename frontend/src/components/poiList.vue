@@ -2,6 +2,7 @@
 
 <template v-for="poi in pois" >
     <l-marker :lat-lng="[poi.position.lat, poi.position.lon]" @click="setSelectedMarker((Number.isInteger(poi.monument_id)? getMonumentName(poi.monument_id) : getMiscName(poi.misc_id)))">
+        <l-icon :icon-size="dynamicSize" :icon-url="monumentIcon.iconUrl"></l-icon>
     </l-marker>
 </template>
     <div v-if="selectedMarker" class="bottom-banner absolute bottom-0 z-[1500] bg-gray-700 w-full justify-center flex flex-col items-center">
@@ -11,8 +12,8 @@
  </template>
 
  <script setup>
-    import {  LMarker } from '@vue-leaflet/vue-leaflet';
-    import { onMounted, ref } from 'vue'
+    import {  LMarker, LIcon} from '@vue-leaflet/vue-leaflet';
+    import { onMounted, ref, computed} from 'vue'
     import {pois, missFacts, imagesMiss_Facts, monuments, images, imagesMonuments} from '../use/useData.js'
 
     const selectedMarker = ref(null)
@@ -60,4 +61,33 @@
     const setSelectedMarker = (markerName) => {
         selectedMarker.value = markerName
     }
+
+    
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+const props = defineProps({
+   zoom: ref(Number)
+})
+
+
+
+const monumentIcon = ref({
+   latlng: ref([43.60046638168462, 1.454668444693962]),
+   iconUrl: ref("/src/assets/bank.svg"),
+   iconSize: ref({ x: 32, y: 32 })
+
+
+})
+
+let iconIsVisible = ref(true)
+
+
+
+const dynamicSize = computed( () =>  ({
+  x: monumentIcon.value.iconSize.x * props.zoom / 20,
+  y: monumentIcon.value.iconSize.y * props.zoom / 20
+}));
+
+
+
  </script>
