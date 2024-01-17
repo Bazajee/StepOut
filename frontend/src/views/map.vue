@@ -36,37 +36,6 @@
    const zoom = ref(16)
    const bounds = ref(null)
 
-   //////////////////////////////////////////////////////////// POI DISPLAY ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-   
-
-   // const pointMonument = ref({
-   //      center: [0, 0],
-   //      radius: 1,
-   //      color: 'black'
-   //    },)
-
-   // const pointMiscFact = ref({
-   //    center: [0, 0],
-   //    radius: 1,
-   //    color: 'green'
-   // },)
-
-   // const monumentIcon = ref ({
-   //    latlng: ref([43.60046638168462, 1.454668444693962]),
-   //    iconUrl: ref("/src/assets/bank.svg"),
-   //    iconSize : ref(32)
-
-
-   // })
-
-  
-  
-   // const dynamicSize = computed(() =>  monumentIcon.value.iconSize * zoom.value/20);
-
- 
-
-   /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
 
    const center = ref([0, 0])
    const circle = ref({
