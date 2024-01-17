@@ -1,6 +1,5 @@
 <template>
    <div class=" h-screen">
-
       <l-map class="absolute z-0" :use-global-leaflet="false" :options="options" :zoom="zoom" :center="center" @ready="load" @update:zoom="zoomUpdated" @update:center="centerUpdated" @update:bounds="boundsUpdated">
          <l-tile-layer :url="url" :attribution="attribution"></l-tile-layer>
          <l-circle-marker :lat-lng="circle.center" :radius="circle.radius" :color="circle.color"/>
@@ -46,7 +45,14 @@
       console.log(error);
    };
 
-   function load() { navigator.geolocation.getCurrentPosition(successCallback, errorCallback); }
+   function load() { 
+      navigator.geolocation.getCurrentPosition(successCallback, errorCallback);
+      positionUpdate();
+   }
+
+   function positionUpdate() { 
+      navigator.geolocation.watchPosition(successCallback, errorCallback); 
+   }
 
 
    function zoomUpdated(NewZoom) {
