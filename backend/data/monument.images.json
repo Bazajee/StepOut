@@ -2,16 +2,16 @@
     "0": {
         "id": 0,
         "image_id": 5,
-        "monument_id": 0
+        "monument_id": 1
     },
     "1": {
         "id": 3,
         "image_id": 6,
-        "monument_id": 0
+        "monument_id": 1
     },
     "3": {
         "id": 3,
         "image_id": 7,
-        "monument_id": 0
+        "monument_id": 1
     }
 }
