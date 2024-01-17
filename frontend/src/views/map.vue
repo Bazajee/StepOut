@@ -5,9 +5,10 @@
          <l-tile-layer :url="url" :attribution="attribution"></l-tile-layer>
          <l-circle-marker :lat-lng="circle.center" :radius="circle.radius" :color="circle.color"/>
 
+
          <PoiList></PoiList>
          <monumentIcon :zoom="zoom"/>
-         
+
          </l-map>
       <div class="relative h-fit  top-0 z-10 bg-slate-200">
          <span>Center: {{ center }}</span>
@@ -27,9 +28,11 @@
    import { LCircleMarker, LMap, LTileLayer } from '@vue-leaflet/vue-leaflet';
    import { onMounted, ref } from 'vue'
 
+
    import FilterBar from '../components/filterBar.vue';
    import PoiList from '../components/poiList.vue';
    import monumentIcon from '../components/monumentIcon.vue'
+
 
    import { getDistance } from '../use/function';
 
