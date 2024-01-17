@@ -11,9 +11,9 @@ import { computed, reactive, ref, watch } from 'vue'
 
 
 // don't work
-const props = defineProps({
-	zoom: ref(Number)
-})
+	const props = defineProps({
+		zoom: ref(Number)
+	})
 
 
 const pointMonument = ref({
@@ -40,10 +40,10 @@ let iconIsVisible = ref(true)
 reactive
 
 // don't work
-watch(props.zoom, ()=> {
-	if (props.zoom > 12) {  return iconIsVisible.value = true }
-	else { return iconIsVisible.value = false }
-});
+	watch(props.zoom, ()=> {
+		if (props.zoom > 12) {  return iconIsVisible.value = true }
+		else { return iconIsVisible.value = false }
+	});
 
 const dynamicSize = computed( () =>  monumentIcon.value.iconSize * props.zoom/20);
 
