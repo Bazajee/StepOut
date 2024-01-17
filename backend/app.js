@@ -63,6 +63,17 @@ app.get('/api/monumentimage', (req, res) => {
 	});
 });
 
+
+app.get('/api/missfactimage', (req, res) => {
+	const filePath = join(__dirname, 'data/misc_fact.json');
+	res.sendFile(filePath, (err) => {
+		 if (err) {
+			  console.error(err);
+			  res.status(500).send('Internal Server Error');
+		 }
+	});
+});
+
 app.use('/backend/data/images', express.static(join(__dirname, 'backend/data/images')));
 
 // Route pour envoyer un fichier image spécifique

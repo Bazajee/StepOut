@@ -125,3 +125,65 @@ export const imagesMonuments = computed(() => {
     // Return null while waiting for the data to be fetched
     return null
 })
+
+
+const  id2imagesMiss_Fact = ref({})
+const imagesMiss_FactListReady = ref(false)
+
+// Computed property to get all pois
+export const imagesMiss_Facts = computed(() => {
+    // If the poi list data is ready, return all pois as an array
+    if (imagesMiss_FactListReady.value) {
+        return Object.values(id2imagesMiss_Fact.value)
+    }
+    
+    // If the poi list data is not ready, fetch it from the API
+    fetch('/api/missfactimage', {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        })
+        .then(response => response.json())
+        .then(imageMiss_FactList => {
+            // Populate the id2poi reference with fetched poi data
+            for (const imageMiss_Fact of Object.values(imageMiss_FactList)) {
+                id2imagesMiss_Fact.value[imageMiss_Fact.id] = imageMiss_Fact
+            }
+            // Set poiList to true to indicate that the data is ready
+            imagesMiss_FactListReady.value = true
+        })
+    // Return null while waiting for the data to be fetched
+    return null
+})
+
+const  id2missFacts = ref({})
+const missFactsListReady = ref(false)
+
+// Computed property to get all missFacts
+export const missFacts = computed(() => {
+    // If the monument list data is ready, return all missFacts as an array
+    console.log(missFactsListReady.value)
+    if (missFactsListReady.value) {
+        return Object.values(id2missFacts.value)
+    }
+    
+    // If the monument list data is not ready, fetch it from the API
+    fetch('/api/misc_fact', {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        })
+        .then(response => response.json())
+        .then(missFactslist => {
+            // Populate the id2monument reference with fetched monument data
+            for (const missFact of Object.values(missFactslist)) { 
+                id2missFacts.value[missFact.id] = missFact
+            }
+            // Set monumentList to true to indicate that the data is ready
+            missFactsListReady.value = true
+        })
+    // Return null while waiting for the data to be fetched
+    return []
+})
