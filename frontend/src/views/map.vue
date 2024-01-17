@@ -25,6 +25,8 @@
    import { onMounted, ref } from 'vue'
    import FilterBar from '../components/filterBar.vue';
    import PoiList from '../components/poiList.vue';
+   import { getDistance } from '../use/function';
+
    const url = ref('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png')
    const attribution = ref('&copy; <a target="_blank" href="http://osm.org/copyright">OpenStreetMap</a> contributors')
    const zoom = ref(16)
