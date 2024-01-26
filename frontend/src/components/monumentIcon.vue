@@ -8,7 +8,7 @@
 
 import { LCircleMarker, LMarker, LMap, LTileLayer, LIcon } from '@vue-leaflet/vue-leaflet'
 import { computed, reactive, ref, watch } from 'vue'
-
+import bank from '/src/assets/bank.svg'
 
 
 const props = defineProps({
@@ -30,7 +30,7 @@ const pointMiscFact = ref({
 
 const monumentIcon = ref({
    latlng: ref([43.60046638168462, 1.454668444693962]),
-   iconUrl: ref("/src/assets/bank.svg"),
+   iconUrl: ref(bank),
    iconSize: ref({ x: 32, y: 32 })
 
 

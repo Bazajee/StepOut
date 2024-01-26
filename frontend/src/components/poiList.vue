@@ -15,7 +15,8 @@
     import {  LMarker, LIcon} from '@vue-leaflet/vue-leaflet';
     import { onMounted, ref, computed} from 'vue'
     import {pois, missFacts, imagesMiss_Facts, monuments, images, imagesMonuments} from '../use/useData.js'
-
+    import bank from '/src/assets/bank.svg'
+    
     const selectedMarker = ref(null)
     const url_image_current = ref('')
     const initMonuments = monuments.value
@@ -73,7 +74,7 @@ const props = defineProps({
 
 const monumentIcon = ref({
    latlng: ref([43.60046638168462, 1.454668444693962]),
-   iconUrl: ref("/src/assets/bank.svg"),
+   iconUrl: ref(bank),
    iconSize: ref({ x: 32, y: 32 })
 
 
