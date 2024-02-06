@@ -1,12 +1,10 @@
 import { ref, computed } from "vue";
-import { zoom } from "./function";
 
 const id2monument = ref({});
 const monumentsListReady = ref(false);
 
 // Computed property to get all monuments
 export const monuments = computed(() => {
-   zoom;
    // If the monument list data is ready, return all monuments as an array
    if (monumentsListReady.value) {
       return Object.values(id2monument.value);
