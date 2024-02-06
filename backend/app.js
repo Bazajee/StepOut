@@ -48,15 +48,33 @@ app.post ('/api/authentification',async (req, res) => {
 	}
  })
 
- app.post('/api/sign_in', (res, req) => {
+ app.post('/api/sign_in',async (req, res) => {
 	const reqData = req.body
-	// check existing 
+	// check existing
+	const userObject = await prisma.user.findUnique ({
+		where :{
+			email : reqData.email,
+		}
+	})
+	// if not existing create 
+	if (!userObject) {
+		await prisma.user.create({
+			data: {
+				email: reqData.email, 
+				name: reqData.name,
+				firstName: reqData.firstName
+			}
+		})
+		res.send(true)
+	}
+	// return error
+	else {
+		return res.status(404).send('Not found')
+	}
 
-	// if not create 
 
-		// return confirm
-	
-	//else return error
+
+
 
  })
 
