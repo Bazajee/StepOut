@@ -1,17 +1,83 @@
-import express from 'express';
-import { join, dirname } from 'path';
-import { fileURLToPath } from 'url';
+
+import { join, dirname } from 'path'
+import { fileURLToPath } from 'url'
+import { PrismaClient } from '@prisma/client'
+import express from 'express'
+import jwt from 'jsonwebtoken'
+import bcrypt from 'bcryptjs'
+
 
 const PORT = process.env.PORT
+const TOKEN_KEY = process.env.TOKEN
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = dirname(__filename)
+const app = express()
+const prisma = new PrismaClient()
 
-const app = express();
+
+app.use(express.json())
+
+
+// ====> Authentification <==============================================================================================================================================================================================================================================================================================================================
+
+app.post ('/api/authentification',async (req, res) => {
+	// grab data from request
+	const reqData = req.body
+	// get user object in the reqData who match with the mail in the request 
+	const userObject = await prisma.user.findUnique ({
+		where :{
+			email : reqData.email,
+		}
+	})
+	// compare hash from db with pwd from req
+	const compare = await bcrypt.compare(reqData.password, userObject.passwordHash)
+	//send cookie if compare true
+	if (compare) {
+		const token = jwt.sign({}, TOKEN_KEY,)
+		res.cookie("authCookie", token, {
+			httpOnly: true,
+			sameSite: true,
+			maxAge: 24*60*60*1000,
+		})
+		res.send(JSON.stringify(userObject.email, userObject.name, userObject.firstName))	
+	}
+	else {
+		return res.status(401).send('Unauthorized')
+	}
+ })
+
+ app.post('/api/sign_in',async (req, res) => {
+	const reqData = req.body
+	// check existing
+	const userObject = await prisma.user.findUnique ({
+		where :{
+			email : reqData.email,
+		}
+	})
+	// if not existing create 
+	if (!userObject) {
+		const hash = await bcrypt.hash(reqData.password, 10)
+		await prisma.user.create({
+			data: {
+				email: reqData.email, 
+				name: reqData.name,
+				firstName: reqData.firstName,
+				passwordHash: hash,
+			}
+		})
+		res.status(200).send(true)
+	}
+	// return error
+	else {
+		res.status(404).send('Not found')
+	}
+ })
+
+// ===================================================================================================================================================================================================================================================================================================================================================
 
 app.get('/api/monument', (req, res) => {
     const filePath = join(__dirname, 'data/monument.json');
-    console.log(filePath);
     res.sendFile(filePath, (err) => {
         if (err) {
             console.error(err);
@@ -22,7 +88,6 @@ app.get('/api/monument', (req, res) => {
 
 app.get('/api/misc_fact', (req, res) => {
 	const filePath = join(__dirname, 'data/misc_fact.json');
-	console.log(filePath);
 	res.sendFile(filePath, (err) => {
 		 if (err) {
 			  console.error(err);
@@ -33,7 +98,6 @@ app.get('/api/misc_fact', (req, res) => {
 
 app.get('/api/poi', (req, res) => {
 	const filePath = join(__dirname, 'data/poi.json');
-	console.log(filePath);
 	res.sendFile(filePath, (err) => {
 		 if (err) {
 			  console.error(err);
@@ -44,7 +108,6 @@ app.get('/api/poi', (req, res) => {
 
 app.get('/api/images', (req, res) => {
 	const filePath = join(__dirname, 'data/images.json');
-	console.log(filePath);
 	res.sendFile(filePath, (err) => {
 		 if (err) {
 			  console.error(err);

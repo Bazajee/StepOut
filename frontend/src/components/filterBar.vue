@@ -7,7 +7,7 @@
       </div>
       <div v-if="isMenuVisible" class="flex w-full z-40 bg-white justify-center items-center rounded-l no-scrollbar py-2">
          <ul class= "flex text-black rounded-lg gap-x-4">
-            <li v-for="filter in filters" :key="filter.id" class="flex rounded-full hover:bg-indigo-100 has-[:checked]:bg-indigo-100 text-indigo-900 has-[:checked]:hover:bg-gray-200 bg-gray-200 px-2">
+            <li v-for="filter in filters" :key="filter.id" class="flex rounded-full has-[:checked]:bg-indigo-200 has-[:checked]:text-indigo-900 bg-gray-200 text-gray-500 px-2">
                <label class="flex gap-2" :for="filter.id"  >
                   <span> {{ filter.text }}</span>
                   <input :id="filter.id" type="checkbox" v-model="filter.done" class="hidden">
@@ -17,7 +17,6 @@
       </div>
    </div>
 </template>
-
 
 <script setup>
   import { ref } from 'vue'

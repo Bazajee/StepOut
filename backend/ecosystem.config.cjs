@@ -7,6 +7,7 @@ module.exports = {
          //ignore_watch: ['',],
          env: {
             PORT: 3500,
+            'TOKEN': "qsdfj3JKRN90",
          },
       },
    ],
