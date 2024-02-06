@@ -1,46 +1,23 @@
 <template>
-   <div class=" h-screen">
-
+   <div class="h-screen">
       <l-map class="absolute z-0" :use-global-leaflet="false" :options="options" :zoom="zoom" :center="center" @ready="load" @update:zoom="zoomUpdated" @update:center="centerUpdated" @update:bounds="boundsUpdated">
          <l-tile-layer :url="url" :attribution="attribution"></l-tile-layer>
          <l-circle-marker :lat-lng="circle.center" :radius="circle.radius" :color="circle.color"/>
-
-
          <PoiList :zoom="zoom"></PoiList>
-
-
-         </l-map>
-      <div class="relative h-fit  top-0 z-10 bg-slate-200">
-         <span>Center: {{ center }}</span>
-         <span>Zoom: {{ zoom }}</span>
-         <span>Bounds: {{ bounds }}</span>
-      </div>
-      <div class="">
-         <FilterBar></FilterBar>
-      </div>
-     
+      </l-map>
+      <FilterBar></FilterBar>
    </div>
-
-
 </template>
 
 <script setup>
    import { LCircleMarker, LMap, LTileLayer } from '@vue-leaflet/vue-leaflet';
-   import { onMounted, ref } from 'vue'
-
-
+   import { ref } from 'vue'
    import FilterBar from '../components/filterBar.vue';
    import PoiList from '../components/poiList.vue';
-   import monumentIcon from '../components/monumentIcon.vue'
-
-
-   import { getDistance } from '../use/function';
+   import { getDistance, bounds, zoom } from '../use/function';
 
    const url = ref('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png')
    const attribution = ref('&copy; <a target="_blank" href="http://osm.org/copyright">OpenStreetMap</a> contributors')
-   const zoom = ref(16)
-   const bounds = ref(null)
-
    
    const center = ref([0, 0])
    const circle = ref({
@@ -54,15 +31,13 @@
       const { latitude, longitude } = position.coords;
       center.value = [latitude, longitude];
       circle.value.center = [latitude, longitude];
-      console.log(latitude, longitude);
    };
 
    const errorCallback = (error) => {
       console.log(error);
    };
 
-   function load() { navigator.geolocation.getCurrentPosition(successCallback, errorCallback); }
-
+   function load() { navigator.geolocation.getCurrentPosition(successCallback, errorCallback);}
 
    function zoomUpdated(NewZoom) {
       zoom.value = NewZoom;
