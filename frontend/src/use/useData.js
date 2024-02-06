@@ -2,7 +2,7 @@ import { ref, computed } from "vue";
 import { zoom } from "./function";
 
 const id2monument = ref({});
-const monumentsListReady = ref(false);
+export const monumentsListReady = ref(false);
 
 // Computed property to get all monuments
 export const monuments = computed(() => {
@@ -33,7 +33,7 @@ fetch("/api/monument", {
    });
 
 const id2poi = ref({});
-const poisListReady = ref(false);
+export const poisListReady = ref(false);
 
 // Computed property to get all pois
 export const pois = computed(() => {
@@ -63,7 +63,7 @@ fetch("/api/poi", {
    });
 
 const id2images = ref({});
-const imageListisReady = ref(false);
+export const imageListisReady = ref(false);
 
 // Computed property to get all pois
 export const images = computed(() => {
@@ -93,7 +93,7 @@ fetch("/api/images", {
    });
 
 const id2imagesMonument = ref({});
-const imagesMonumentListReady = ref(false);
+export const imagesMonumentListReady = ref(false);
 
 // Computed property to get all pois
 export const imagesMonuments = computed(() => {
@@ -123,7 +123,7 @@ export const imagesMonuments = computed(() => {
    });
 
 const id2imagesMiss_Fact = ref({});
-const imagesMiss_FactListReady = ref(false);
+export const imagesMiss_FactListReady = ref(false);
 
 // Computed property to get all pois
 export const imagesMiss_Facts = computed(() => {
@@ -153,7 +153,7 @@ export const imagesMiss_Facts = computed(() => {
    });
 
 const id2missFacts = ref({});
-const missFactsListReady = ref(false);
+export const missFactsListReady = ref(false);
 
 // Computed property to get all missFacts
 export const missFacts = computed(() => {
