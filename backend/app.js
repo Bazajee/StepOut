@@ -1,13 +1,56 @@
+import { error } from 'console';
 import express from 'express';
 import { join, dirname } from 'path';
 import { fileURLToPath } from 'url';
+import jwt from 'jsonwebtoken'
+import bcrypt from 'bcrypt'
 
 const PORT = process.env.PORT
-
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
-
 const app = express();
+const TOKEN_KEY = process.env.TOKEN_KEY
+
+// ====> Authentification <==============================================================================================================================================================================================================================================================================================================================
+
+app.post ('/api/authentification' ,async (req, res) => {
+	// grab data from request
+	const reqData = req.body
+	// get user object in the reqData who match with the mail in the request 
+	const userObject = none
+	// compare bcrypt 
+	const compare = await bcrypt.compare(reqData.pwd,userObject.pwdKey)
+	if (compare) {
+		const token = jwt.sign({}, TOKEN_KEY, { algorithm: 'RS384' })
+		res.cookie("authCookie", token, {
+			httpOnly: true,
+			sameSite: true,
+			maxAge: 24*60*60*1000,
+		})
+		res.send(JSON.stringify(userObject))	
+	}
+	else {
+		return res.status(401).send('Unauthorized')
+	}
+ })
+
+ app.post('/api/sign_in', (res, req) => {
+	const reqData = req.body
+	// check existing 
+
+	// if not create 
+
+		// return confirm
+	
+	//else return error
+
+ })
+
+
+
+
+
+// ===================================================================================================================================================================================================================================================================================================================================================
 
 app.get('/api/monument', (req, res) => {
     const filePath = join(__dirname, 'data/monument.json');
