@@ -1,42 +1,47 @@
-import express from 'express'
+
 import { join, dirname } from 'path'
 import { fileURLToPath } from 'url'
-import jwt from 'jsonwebtoken'
-import bcrypt from 'bcrypt'
 import { PrismaClient } from '@prisma/client'
+import express from 'express'
+import jwt from 'jsonwebtoken'
+import bcrypt from 'bcryptjs'
+
 
 const PORT = process.env.PORT
+const TOKEN_KEY = process.env.TOKEN
+
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = dirname(__filename)
 const app = express()
-const TOKEN_KEY = process.env.TOKEN_KEY
-const prisma = new PrismaClient()
 
+const prisma = new PrismaClient()
+console.log("tk",process.env.TOKEN)
+
+app.use(express.json())
 
 
 // ====> Authentification <==============================================================================================================================================================================================================================================================================================================================
 
-app.post ('/api/authentification', async (req, res) => {
+app.post ('/api/authentification',async (req, res) => {
 	// grab data from request
 	const reqData = req.body
-
 	// get user object in the reqData who match with the mail in the request 
 	const userObject = await prisma.user.findUnique ({
 		where :{
 			email : reqData.email,
 		}
 	})
-
-	// compare bcrypt 
-	const compare = await bcrypt.compare(reqData.pwd,userObject.pwdKey)
+	// compare hash from db with pwd from req
+	const compare = await bcrypt.compare(reqData.pwd, userObject.passwordHash)
+	//send cookie if compare true
 	if (compare) {
-		const token = jwt.sign({}, TOKEN_KEY, { algorithm: 'RS384' })
+		const token = jwt.sign({}, TOKEN_KEY,)
 		res.cookie("authCookie", token, {
 			httpOnly: true,
 			sameSite: true,
 			maxAge: 24*60*60*1000,
 		})
-		res.send(JSON.stringify(userObject))	
+		res.send(JSON.stringify(userObject.email, userObject.name, userObject.firstName))	
 	}
 	else {
 		return res.status(401).send('Unauthorized')
@@ -54,10 +59,6 @@ app.post ('/api/authentification', async (req, res) => {
 	//else return error
 
  })
-
-
-
-
 
 // ===================================================================================================================================================================================================================================================================================================================================================
 
