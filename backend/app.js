@@ -1,23 +1,32 @@
-import { error } from 'console';
-import express from 'express';
-import { join, dirname } from 'path';
-import { fileURLToPath } from 'url';
+import express from 'express'
+import { join, dirname } from 'path'
+import { fileURLToPath } from 'url'
 import jwt from 'jsonwebtoken'
 import bcrypt from 'bcrypt'
+import { PrismaClient } from '@prisma/client'
 
 const PORT = process.env.PORT
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
-const app = express();
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = dirname(__filename)
+const app = express()
 const TOKEN_KEY = process.env.TOKEN_KEY
+const prisma = new PrismaClient()
+
+
 
 // ====> Authentification <==============================================================================================================================================================================================================================================================================================================================
 
-app.post ('/api/authentification' ,async (req, res) => {
+app.post ('/api/authentification', async (req, res) => {
 	// grab data from request
 	const reqData = req.body
+
 	// get user object in the reqData who match with the mail in the request 
-	const userObject = none
+	const userObject = await prisma.user.findUnique ({
+		where :{
+			email : reqData.email,
+		}
+	})
+
 	// compare bcrypt 
 	const compare = await bcrypt.compare(reqData.pwd,userObject.pwdKey)
 	if (compare) {
@@ -54,7 +63,6 @@ app.post ('/api/authentification' ,async (req, res) => {
 
 app.get('/api/monument', (req, res) => {
     const filePath = join(__dirname, 'data/monument.json');
-    console.log(filePath);
     res.sendFile(filePath, (err) => {
         if (err) {
             console.error(err);
@@ -65,7 +73,6 @@ app.get('/api/monument', (req, res) => {
 
 app.get('/api/misc_fact', (req, res) => {
 	const filePath = join(__dirname, 'data/misc_fact.json');
-	console.log(filePath);
 	res.sendFile(filePath, (err) => {
 		 if (err) {
 			  console.error(err);
@@ -76,7 +83,6 @@ app.get('/api/misc_fact', (req, res) => {
 
 app.get('/api/poi', (req, res) => {
 	const filePath = join(__dirname, 'data/poi.json');
-	console.log(filePath);
 	res.sendFile(filePath, (err) => {
 		 if (err) {
 			  console.error(err);
@@ -87,7 +93,6 @@ app.get('/api/poi', (req, res) => {
 
 app.get('/api/images', (req, res) => {
 	const filePath = join(__dirname, 'data/images.json');
-	console.log(filePath);
 	res.sendFile(filePath, (err) => {
 		 if (err) {
 			  console.error(err);
