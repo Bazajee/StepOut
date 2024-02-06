@@ -13,9 +13,8 @@ const TOKEN_KEY = process.env.TOKEN
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = dirname(__filename)
 const app = express()
-
 const prisma = new PrismaClient()
-console.log("tk",process.env.TOKEN)
+
 
 app.use(express.json())
 
@@ -57,12 +56,16 @@ app.post ('/api/authentification',async (req, res) => {
 		}
 	})
 	// if not existing create 
+
+	
 	if (!userObject) {
+		const hash = await bcrypt.hash(reqData.password, 10)
 		await prisma.user.create({
 			data: {
 				email: reqData.email, 
 				name: reqData.name,
-				firstName: reqData.firstName
+				firstName: reqData.firstName,
+				passwordHash: hash,
 			}
 		})
 		res.send(true)
