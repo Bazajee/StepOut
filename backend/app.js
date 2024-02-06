@@ -66,11 +66,11 @@ app.post ('/api/authentification',async (req, res) => {
 				passwordHash: hash,
 			}
 		})
-		res.send(true)
+		res.status(200).send(true)
 	}
 	// return error
 	else {
-		return res.status(404).send('Not found')
+		res.status(404).send('Not found')
 	}
  })
 
