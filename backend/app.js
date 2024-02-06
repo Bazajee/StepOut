@@ -2,7 +2,7 @@ import express from 'express';
 import { join, dirname } from 'path';
 import { fileURLToPath } from 'url';
 
-
+const PORT = process.env.PORT
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -85,6 +85,6 @@ app.get('/api/getImage/:filename', (req, res) => {
   res.sendFile(imagePath);
 });
 
-app.listen(3500, () => {
-    console.log('listening to port 3500');
+app.listen(PORT, () => {
+    console.log(`listening to port ${PORT}`);
 });
