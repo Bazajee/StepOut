@@ -31,7 +31,7 @@ app.post ('/api/authentification',async (req, res) => {
 		}
 	})
 	// compare hash from db with pwd from req
-	const compare = await bcrypt.compare(reqData.pwd, userObject.passwordHash)
+	const compare = await bcrypt.compare(reqData.password, userObject.passwordHash)
 	//send cookie if compare true
 	if (compare) {
 		const token = jwt.sign({}, TOKEN_KEY,)
@@ -56,8 +56,6 @@ app.post ('/api/authentification',async (req, res) => {
 		}
 	})
 	// if not existing create 
-
-	
 	if (!userObject) {
 		const hash = await bcrypt.hash(reqData.password, 10)
 		await prisma.user.create({
