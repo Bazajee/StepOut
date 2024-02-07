@@ -1,70 +1,73 @@
 import L from "leaflet"
-import { computed, ref, watchPostEffect } from "vue"
+import { computed, ref, watch } from "vue"
 
 export function getDistance(from, to) {
-    return L.latLng(from).distanceTo(to);
+   return L.latLng(from).distanceTo(to);
 }
 
 export const filters = ref([
-        { id: 1, text: 'Main', done: true },
-        { id: 2, text: 'Normal', done: true },
-    ])
+      { id: 1, text: 'Main', done: true },
+      { id: 2, text: 'Normal', done: true },
+   ])
 
 export const bounds = ref(null)
-export const center = ref([0, 0])
+export const center = ref({"lat":0,"lng":0})
 export const options = ref({zoomControl: false})
 export const zoom = ref(16)
 
 export const circle = ref({
-    center: [0, 0],
-    radius: 10,
-    color: 'blue'
-  })
+   center: [0, 0],
+   radius: 10,
+   color: 'blue'
+})
 
 export const isLive = ref(true)
 
 const successCallback = (position) => {
-    const { latitude, longitude } = position.coords;
-    circle.value.center = [latitude, longitude];
-    if (isLive.value) {
-        center.value = circle.value.center
-    } 
-    // else {
-    //     const centerSaved = center.value
-    //     center.value = centerSaved
-    // }
- };
- 
- const errorCallback = (error) => {
-    console.log(error);
- };
- 
- export const load = () => {navigator.geolocation.watchPosition(successCallback, errorCallback)}
+   const { latitude, longitude } = position.coords;
+   circle.value.center = [latitude, longitude]
+   if (isLive.value) {
+      center.value = circle.value.center
+   }
+};
 
- watchPostEffect(() => {
-    if (center.value[0] !== circle.value.center[0] || center.value[1] !== circle.value.center[1]) {
-       isLive.value = false
-    }
- })
+const errorCallback = (error) => {
+   console.log(error);
+};
+
+export const load = () => {navigator.geolocation.watchPosition(successCallback, errorCallback)}
+
+watch(
+   center, 
+   () => {
+   if (center.value[0] !== circle.value.center[0] || center.value[1] !== circle.value.center[1]) {
+      isLive.value = false
+   }
+   else {
+      isLive.value = true
+      center.value = circle.value.center
+   }
+})
 
 
 export function zoomUpdated(NewZoom) {
-    zoom.value = NewZoom;
- }
- 
+   zoom.value = NewZoom;
+}
+
 export function centerUpdated (NewCenter) {
-    center.value = NewCenter;
+   center.value = [NewCenter.lat, NewCenter.lng];
 }
 
 export function boundsUpdated (NewBounds) {
-    
-    bounds.value = NewBounds;
+   
+   bounds.value = NewBounds;
 }
 
 export const unlocked = (currentPosition, poiPosition) => {
-    const dist = getDistance(currentPosition, poiPosition)
-    if (dist < 1500) {
-        return true
-    }
-    return false
+   const dist = getDistance(currentPosition, poiPosition)
+   console.log(dist)
+   if (dist < 500) {
+      return true
+   }
+   return false
 }

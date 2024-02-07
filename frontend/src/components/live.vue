@@ -7,16 +7,18 @@
 <script setup>
    import live_image from "/src/assets/posit_live.png"
    import not_live_image from "/src/assets/posit_not_live.png"
-   import { computed, ref, watchPostEffect } from 'vue'
+   import { computed, ref, watch } from 'vue'
    import { center, circle, isLive } from '../use/function'
 
    const urlImage = ref(live_image)
    function updateIsLive() {
       isLive.value = !isLive.value
       isLive.value ? urlImage.value = live_image : urlImage.value = not_live_image
+      center.value = circle.value.center
    }
 
-   watchPostEffect(() => {
+   watch(isLive,
+      () => {
       isLive.value ? urlImage.value = live_image : urlImage.value = not_live_image
    })
 
