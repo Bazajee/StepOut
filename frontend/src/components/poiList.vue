@@ -18,7 +18,7 @@
  import { ref, computed} from 'vue';
  import { LMarker, LIcon } from '@vue-leaflet/vue-leaflet';
  import { pois, missFacts, imagesMiss_Facts, monuments, images, imagesMonuments } from '../use/useData.js';
- import { circle, filters, unlocked } from "../use/function";
+ import { circle, filters, unlocked } from "../use/usePosition";
  import bank from '/src/assets/bank.svg';
 
  const onSwipeItem = () => (direction) => {
