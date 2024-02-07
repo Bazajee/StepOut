@@ -1,6 +1,6 @@
 <template >
    <div class="w-full flex flex-row-reverse items-center">
-      <div class="flex w-11 " id="filterButton">
+      <div class="flex w-11" id="filterButton">
          <button @click="handleClick" class="h-full w-full flex justify-center rounded-lg  hover:border-solid hover:border-2 hover:border-transparent z-40" >
             <img src="/src/assets/list-thin-svgrepo-com.svg" alt="">
          </button>

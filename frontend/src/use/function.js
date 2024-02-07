@@ -15,17 +15,21 @@ export const center = ref([0, 0])
 export const options = ref({zoomControl: false})
 export const zoom = ref(16)
 
+export const isLive = ref(true)
+
 const successCallback = (position) => {
     const { latitude, longitude } = position.coords;
-    center.value = [latitude, longitude];
     circle.value.center = [latitude, longitude];
+    if (isLive) {
+        center.value = circle.value.center
+    }
  };
  
  const errorCallback = (error) => {
     console.log(error);
  };
  
- export function load() {navigator.geolocation.watchPosition(successCallback, errorCallback)}
+ export const load = () => {navigator.geolocation.watchPosition(successCallback, errorCallback)}
 
 
 export function zoomUpdated(NewZoom) {
