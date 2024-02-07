@@ -7,8 +7,10 @@
          <PoiList :zoom="zoom"></PoiList>
       </l-map>
       
-      <FilterBar></FilterBar>
-      
+      <div class="flex">
+         <UserButton></UserButton>
+         <FilterBar></FilterBar>
+      </div>
    </div>
 </template>
 
@@ -16,6 +18,7 @@
    import { LCircleMarker, LMap, LTileLayer } from '@vue-leaflet/vue-leaflet';
    import { ref } from 'vue'
    import FilterBar from '../components/filterBar.vue';
+   import UserButton from '../components/userButton.vue';
    import PoiList from '../components/poiList.vue';
    import CurrentPosition from "../components/currentPosition.vue"
    import { center, options, zoom, load, zoomUpdated, boundsUpdated, centerUpdated } from '../use/usePosition';
