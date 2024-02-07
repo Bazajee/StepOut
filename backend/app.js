@@ -1,4 +1,3 @@
-
 import { join, dirname } from 'path'
 import { fileURLToPath } from 'url'
 import { PrismaClient } from '@prisma/client'
@@ -9,15 +8,15 @@ import bcrypt from 'bcryptjs'
 
 const PORT = process.env.PORT
 const TOKEN_KEY = process.env.TOKEN
+console.log(process.env.DATABASE_URL)
+
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = dirname(__filename)
 const app = express()
 const prisma = new PrismaClient()
 
-
 app.use(express.json())
-
 
 // ====> Authentification <==============================================================================================================================================================================================================================================================================================================================
 
