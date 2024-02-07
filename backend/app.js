@@ -117,7 +117,7 @@ app.get('/api/images', (req, res) => {
 });
 
 app.get('/api/monumentimage', (req, res) => {
-	const filePath = join(__dirname, 'data/monument.images.json');
+	const filePath = join(__dirname, 'data/monument_images.json');
 	res.sendFile(filePath, (err) => {
 		 if (err) {
 			  console.error(err);
@@ -125,7 +125,6 @@ app.get('/api/monumentimage', (req, res) => {
 		 }
 	});
 });
-
 
 app.get('/api/missfactimage', (req, res) => {
 	const filePath = join(__dirname, 'data/misc_fact.json');

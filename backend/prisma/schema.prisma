@@ -51,6 +51,14 @@ model images {
   monument_image monument_images? 
 }
 
+model User {
+    id                  Int                 @id @default(autoincrement())
+    email               String                @unique
+    passwordHash        String
+    name                String
+    firstName           String
+}
+
 
 datasource db {
   provider = "postgresql"
