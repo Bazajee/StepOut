@@ -85,6 +85,6 @@ app.get('/api/getImage/:filename', (req, res) => {
   res.sendFile(imagePath);
 });
 
-app.listen(3500, () => {
+app.listen(process.env.port, () => {
     console.log('listening to port 3500');
 });
