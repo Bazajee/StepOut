@@ -18,7 +18,6 @@
 
    watch(isLive,
       () => {
-         console.log(isLive.value)  
       isLive.value ? urlImage.value = live_image : urlImage.value = not_live_image
    })
 

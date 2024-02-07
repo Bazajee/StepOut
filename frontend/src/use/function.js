@@ -26,7 +26,6 @@ export const isLive = ref(true)
 const successCallback = (position) => {
    const { latitude, longitude } = position.coords;
    circle.value.center = [latitude.toFixed(4), longitude.toFixed(4)]
-   console.log(isLive.value)
    if (isLive.value) {
       center.value = circle.value.center
    }
@@ -36,7 +35,7 @@ const errorCallback = (error) => {
    console.log(error);
 };
 
-export const load = () => {navigator.geolocation.watchPosition(successCallback, errorCallback)}
+export const load = () => { navigator.geolocation.watchPosition(successCallback, errorCallback) }
 
 watch(
    [center, isLive],
