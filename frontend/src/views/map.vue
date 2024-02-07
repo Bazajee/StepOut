@@ -18,7 +18,7 @@
    import FilterBar from '../components/filterBar.vue';
    import PoiList from '../components/poiList.vue';
    import CurrentPosition from "../components/currentPosition.vue"
-   import { center, options, zoom, load, zoomUpdated, boundsUpdated, centerUpdated } from '../use/function';
+   import { center, options, zoom, load, zoomUpdated, boundsUpdated, centerUpdated } from '../use/usePosition';
    import Live from "../components/live.vue"
 
    const url = ref('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png')

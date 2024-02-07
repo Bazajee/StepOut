@@ -20,7 +20,7 @@
 
 <script setup>
   import { ref } from 'vue'
-  import { filters } from "../use/function"
+  import { filters } from "../use/usePosition"
 
   const isMenuVisible = ref(false)
 
