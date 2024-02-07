@@ -1,5 +1,5 @@
 import L from "leaflet"
-import { computed, ref } from "vue"
+import { computed, ref, watchPostEffect } from "vue"
 
 export function getDistance(from, to) {
     return L.latLng(from).distanceTo(to);
@@ -14,6 +14,12 @@ export const bounds = ref(null)
 export const center = ref([0, 0])
 export const options = ref({zoomControl: false})
 export const zoom = ref(16)
+
+export const circle = ref({
+    center: [0, 0],
+    radius: 10,
+    color: 'blue'
+  })
 
 export const isLive = ref(true)
 
@@ -35,6 +41,12 @@ const successCallback = (position) => {
  
  export const load = () => {navigator.geolocation.watchPosition(successCallback, errorCallback)}
 
+ watchPostEffect(() => {
+    if (center.value[0] !== circle.value.center[0] || center.value[1] !== circle.value.center[1]) {
+       isLive.value = false
+    }
+ })
+
 
 export function zoomUpdated(NewZoom) {
     zoom.value = NewZoom;
@@ -48,14 +60,6 @@ export function boundsUpdated (NewBounds) {
     
     bounds.value = NewBounds;
 }
-
-
-export const circle = ref({
-    center: [0, 0],
-    radius: 10,
-    color: 'blue'
-  },)
-
 
 export const unlocked = (currentPosition, poiPosition) => {
     const dist = getDistance(currentPosition, poiPosition)
