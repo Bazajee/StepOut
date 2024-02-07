@@ -37,7 +37,7 @@
          }
       const url_image = images.value.find(item => item.id == image.image_id);
       // Utilisez l'URL complète pour récupérer l'image du backend
-      return url_image ? `api/getImage/${url_image.url}` : false;
+      return url_image ? `/api/getImage/${url_image.url}` : false;
    };
 
    // Get Monument name and set image url

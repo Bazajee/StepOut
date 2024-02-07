@@ -66,7 +66,7 @@ export function boundsUpdated (NewBounds) {
 export const unlocked = (currentPosition, poiPosition) => {
    const dist = getDistance(currentPosition, poiPosition)
    console.log(dist)
-   if (dist < 500) {
+   if (dist < 1500) {
       return true
    }
    return false

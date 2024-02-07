@@ -5,11 +5,8 @@ import express from 'express'
 import jwt from 'jsonwebtoken'
 import bcrypt from 'bcryptjs'
 
-
 const PORT = process.env.PORT
 const TOKEN_KEY = process.env.TOKEN
-console.log(process.env.DATABASE_URL)
-
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = dirname(__filename)
@@ -139,7 +136,6 @@ app.use('/backend/data/images', express.static(join(__dirname, 'backend/data/ima
 
 // Route pour envoyer un fichier image spécifique
 app.get('/api/getImage/:filename', (req, res) => {
-
   const filename = req.params.filename;
   const imagePath = join(__dirname, '/data/images', filename);
   // Envoyer le fichier image
