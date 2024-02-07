@@ -10,7 +10,8 @@ import {monumentsListReady, poisListReady, imageListisReady, imagesMonumentListR
    })
    const confirmpassword = ref("")
    const showPasswordInput = ref(false)
-   const accountCreated = ref(false)
+   const errorLogin = ref(false)
+   const errorCreateAccount = ref(false)
    const isEmailValid = computed ( () => {
      const re = new RegExp(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/);
      return re.test(formData.value.email)
@@ -44,16 +45,26 @@ import {monumentsListReady, poisListReady, imageListisReady, imagesMonumentListR
    }); 
    if (response.ok)
    {
+    showPasswordInput.value = false
+    errorCreateAccount.value = false
+    errorLogin.value = false
     monumentsListReady.value = false
     poisListReady.value = false
     imageListisReady.value = false
     imagesMonumentListReady.value = false
     imagesMiss_FactListReady.value = false
     missFactsListReady.value = false
-    if (showPasswordInput.value) 
-      accountCreated.value = true
+    router.push('map/')
+   }
+   else
+   {
+    if (showPasswordInput.value)
     {
-      router.push('map/')
+     errorCreateAccount.value = true
+    }
+    else
+    {
+      errorLogin.value = true
     }
    }
  }
@@ -84,11 +95,14 @@ import {monumentsListReady, poisListReady, imageListisReady, imagesMonumentListR
      <div  v-if="showPasswordInput " class="flex justify-between">
        <input class="border m-3" type="password" v-model="confirmpassword" placeholder="confirm password" name="description">
      </div>
-     <span  v-else-if="!accountCreated" class="pb-4 flex justify-end">
+     <span  v-else-if="!errorLogin &&  !errorCreateAccount" class="pb-4 flex justify-end">
       <span class="text-blue-500 hover:bg-gray-200 transition-colors duration-300 cursor-pointer" @click="handleClickCreateAcc()">Create Account</span>
     </span>
-    <span  v-else-if="accountCreated" class="pb-4 flex justify-end">
-      <span class="text-blue-500 hover:bg-gray-200 transition-colors duration-300 cursor-pointer">Erreur lors de la création du compte</span>
+    <span  v-if="errorLogin" class="pb-4 flex justify-end">
+      <span class="text-red-500 transition-colors duration-300 cursor-pointer">An error has occured. Check your email and your password.</span>
+    </span>
+    <span  v-if="errorCreateAccount" class="pb-4 flex justify-end">
+      <span class="text-red-500 transition-colors duration-300 cursor-pointer">An error has occured. Try again.</span>
     </span>
      <div class="flex justify-end">
        <button @click="submitForm" :disabled="isFormValid" class="flex w-fit bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline disabled:bg-blue-200" type="submit">Valider</button>
