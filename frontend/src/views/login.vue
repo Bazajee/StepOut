@@ -29,7 +29,7 @@ import {monumentsListReady, poisListReady, imageListisReady, imagesMonumentListR
    
  async function submitForm() {
    // Les options par défaut sont indiquées par *
-   const urlFecth = showPasswordInput.value ? "/api/sign-in ": "/api/authentification"
+   const urlFecth = showPasswordInput.value ? "/api/sign_in": "/api/authentification"
    const response = await fetch(urlFecth, {
      method: "POST", // *GET, POST, PUT, DELETE, etc.
      mode: "cors", // no-cors, *cors, same-origin
