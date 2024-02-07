@@ -5,6 +5,5 @@
 <script setup>
    import { LCircleMarker } from '@vue-leaflet/vue-leaflet';
    import { circle } from "../use/function"
-   
 </script>
 
