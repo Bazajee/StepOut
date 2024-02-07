@@ -12,13 +12,13 @@
 
    const urlImage = ref(live_image)
    function updateIsLive() {
-      isLive.value = !isLive.value
-      isLive.value ? urlImage.value = live_image : urlImage.value = not_live_image
+      isLive.value = true
       center.value = circle.value.center
    }
 
    watch(isLive,
       () => {
+         console.log(isLive.value)  
       isLive.value ? urlImage.value = live_image : urlImage.value = not_live_image
    })
 

@@ -1,5 +1,5 @@
 import L from "leaflet"
-import { computed, ref, watch } from "vue"
+import { ref, watch } from "vue"
 
 export function getDistance(from, to) {
    return L.latLng(from).distanceTo(to);
@@ -25,7 +25,8 @@ export const isLive = ref(true)
 
 const successCallback = (position) => {
    const { latitude, longitude } = position.coords;
-   circle.value.center = [latitude, longitude]
+   circle.value.center = [latitude.toFixed(4), longitude.toFixed(4)]
+   console.log(isLive.value)
    if (isLive.value) {
       center.value = circle.value.center
    }
@@ -38,7 +39,7 @@ const errorCallback = (error) => {
 export const load = () => {navigator.geolocation.watchPosition(successCallback, errorCallback)}
 
 watch(
-   center, 
+   [center, isLive],
    () => {
    if (center.value[0] !== circle.value.center[0] || center.value[1] !== circle.value.center[1]) {
       isLive.value = false
@@ -55,7 +56,7 @@ export function zoomUpdated(NewZoom) {
 }
 
 export function centerUpdated (NewCenter) {
-   center.value = [NewCenter.lat, NewCenter.lng];
+   center.value = [NewCenter.lat.toFixed(4), NewCenter.lng.toFixed(4)];
 }
 
 export function boundsUpdated (NewBounds) {
