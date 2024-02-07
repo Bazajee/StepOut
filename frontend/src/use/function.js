@@ -22,6 +22,9 @@ const successCallback = (position) => {
     circle.value.center = [latitude, longitude];
     if (isLive) {
         center.value = circle.value.center
+    } else {
+        const centerSaved = center.value
+        center.value = centerSaved
     }
  };
  
