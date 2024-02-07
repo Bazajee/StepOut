@@ -8,7 +8,7 @@
    import live_image from "/src/assets/posit_live.png"
    import not_live_image from "/src/assets/posit_not_live.png"
    import { computed, ref, watch } from 'vue'
-   import { center, circle, isLive } from '../use/function'
+   import { center, circle, isLive } from '../use/usePosition'
 
    const urlImage = ref(live_image)
    function updateIsLive() {
