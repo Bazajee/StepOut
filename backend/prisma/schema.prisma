@@ -1,0 +1,66 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model poi {
+  id                       String @unique
+  adresse_forme_editoriale String
+  commune                  String
+  code_insee               Int
+  position                 Json
+
+  monuments monument?
+}
+
+model monument {
+  id          String  @unique
+  is_main     Boolean
+  name        String
+  description String
+  author      String
+  period      String
+
+  pois   poi    @relation(fields: [poi_id], references: [id])
+  poi_id String @unique
+
+  image monument_images[]
+}
+
+model monument_images {
+  id          String   @unique
+  image_id String @unique
+  monument_id String
+  
+  
+  monument    monument @relation(fields: [monument_id], references: [id])
+  image    images @relation(fields: [image_id], references: [id])
+  
+}
+
+model images {
+  id          String @unique
+  url         String
+  author      String
+  source      String ?
+  description String
+  name        String
+
+  monument_image monument_images? 
+}
+
+model User {
+    id                  Int                 @id @default(autoincrement())
+    email               String                @unique
+    passwordHash        String
+    name                String
+    firstName           String
+}
+
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}

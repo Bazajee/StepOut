@@ -16,6 +16,8 @@
         "monument_id": 1,
         "misc_id": "none",
         "adresse_forme_editoriale": "place du Capitole",
+        "commune":  "Toulouse",
+        "code_insee": 31555,
         "position": {
             "lon": 1.44423795256864,
             "lat": 43.6044703168776
