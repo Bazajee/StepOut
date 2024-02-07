@@ -20,12 +20,13 @@ export const isLive = ref(true)
 const successCallback = (position) => {
     const { latitude, longitude } = position.coords;
     circle.value.center = [latitude, longitude];
-    if (isLive) {
+    if (isLive.value) {
         center.value = circle.value.center
-    } else {
-        const centerSaved = center.value
-        center.value = centerSaved
-    }
+    } 
+    // else {
+    //     const centerSaved = center.value
+    //     center.value = centerSaved
+    // }
  };
  
  const errorCallback = (error) => {
