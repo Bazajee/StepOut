@@ -36,7 +36,7 @@ app.post ('/api/authentification',async (req, res) => {
 			sameSite: true,
 			maxAge: 24*60*60*1000,
 		})
-		res.send(JSON.stringify(userObject.email, userObject.name, userObject.firstName))	
+		res.send(JSON.stringify({email: userObject.email, name:userObject.name, firstName: userObject.firstName}))	
 	}
 	else {
 		return res.status(401).send('Unauthorized')
@@ -63,6 +63,7 @@ app.post ('/api/authentification',async (req, res) => {
 			}
 		})
 		res.status(200).send(true)
+		
 	}
 	// return error
 	else {
