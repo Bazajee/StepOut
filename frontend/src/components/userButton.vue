@@ -1,10 +1,9 @@
 <script setup>
-import router from '../router'
-import { removeJwtAuthCookie } from "../use/useAuth.js"
+import { logout } from "../use/useAuth.js"
+import { userMenuState } from "../use/useStateMenu"
 
 function handleLogout () {
-    removeJwtAuthCookie()
-    router.push("/")
+    userMenuState.value = !userMenuState.value
 } 
 
 

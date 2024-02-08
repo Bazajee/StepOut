@@ -1,6 +1,7 @@
 <script setup>
   import { ref, computed } from 'vue'
   import router from '../router';
+
   import { monumentsListReady, poisListReady, imageListisReady, imagesMonumentListReady } from '../use/useData.js'
    const formData = ref ({
      email: "",
@@ -52,7 +53,11 @@
     poisListReady.value = false
     imageListisReady.value = false
     imagesMonumentListReady.value = false
+
+    const data = await response.json()
+    localStorage.setItem('userAuth' ,JSON.stringify(data))
     router.push('map/')
+
    }
    else
    {
