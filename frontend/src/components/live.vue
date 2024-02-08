@@ -1,5 +1,5 @@
 <template>
-   <button class="bg-white w-10 h-10 absolute bottom-5 right-10 z-40 flex justify-center items-center rounded-md">
+   <button class="bg-white w-8 h-8 absolute bottom-2 right-2 z-40 flex justify-center items-center rounded-md">
       <img class="w-8 h-8" @click="updateIsLive" :src="urlImage" alt="">
    </button>
 </template>

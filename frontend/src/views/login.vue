@@ -16,7 +16,7 @@ import {monumentsListReady, poisListReady, imageListisReady, imagesMonumentListR
      const re = new RegExp(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/);
      return re.test(formData.value.email)
    })
- 
+
    const isPassWordValid = computed ( () => !!formData.value?.password )
 
    const isNameValid = computed ( () => !!formData.value?.name )
