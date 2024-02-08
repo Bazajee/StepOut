@@ -1,3 +1,4 @@
+
 import { join, dirname } from "path";
 import { fileURLToPath } from "url";
 import { PrismaClient } from "@prisma/client";
@@ -14,6 +15,7 @@ const app = express();
 const prisma = new PrismaClient();
 
 app.use(express.json());
+
 
 // ====> Authentification <==============================================================================================================================================================================================================================================================================================================================
 
@@ -201,7 +203,9 @@ app.use(
 );
 
 // Route pour envoyer un fichier image spécifique
+
 app.get("/api/getImage/:filename", (req, res) => {
+
   const filename = req.params.filename;
   const imagePath = join(__dirname, "/data/images", filename);
   // Envoyer le fichier image

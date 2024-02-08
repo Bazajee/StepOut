@@ -4,7 +4,6 @@
 
 <script setup>
    import { LCircleMarker } from '@vue-leaflet/vue-leaflet';
-   import { circle } from "../use/function"
-   
+   import { circle } from "../use/usePosition"
 </script>
 

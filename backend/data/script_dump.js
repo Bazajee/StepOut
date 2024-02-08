@@ -13,7 +13,6 @@ async function main() {
 
     // Créer les entrées pour les pois
     for (const poi of Object.values(poiData)) {
-      console.log('id :', poi.id )
       await prisma.poi.create({
         data: {
           id : poi.id+"", //parse en string car c'est ce qui est attendu.
