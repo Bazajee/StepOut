@@ -5,12 +5,12 @@
      </l-marker>
    </template>
    <div v-if="selectedMarker" v-touch:swipe="onSwipeItem()" class="bottom-banner absolute bottom-0 z-[1500] bg-gray-700 w-full justify-center flex flex-col items-center">
-      <img v-if="url_image_current" class="h-32 w-32" :src="url_image_current" alt="">
+      <img v-if="url_image_current" class="h-32 w-32 p-2 rounded-xl" :src="url_image_current" alt="">
       <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white mr-2 mb-2 absolute top-0 right-0 cursor-pointer" stroke="currentColor" viewBox="0 0 24 24" @click="handleClosePoi">
          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
       </svg>
      <span class="text-white">{{ selectedMarker.title }}</span>
-     <span v-if="showDescription" class="text-white">{{ selectedMarker.description }}</span>
+     <span v-if="showDescription" class="text-white p-2">{{ selectedMarker.description }}</span>
    </div>
  </template>
  
@@ -22,11 +22,14 @@
  import bank from '/src/assets/bank.svg';
 
  const onSwipeItem = () => (direction) => {
-   if(direction === "top"){
-      showDescription.value = true
-   }
-   else if (direction === 'bottom'){
-      showDescription.value = false
+   if (isUnlocked.value)
+   {
+      if(direction === "top"){
+         showDescription.value = true
+      }
+      else if (direction === 'bottom'){
+         showDescription.value = false
+      }
    }
 };
  const props = defineProps({
@@ -46,24 +49,14 @@
    iconSize: { x: 32, y: 32 }
  });
  
-
- const swipeDownpHandler = () => {
-   console.log("down")
-   showDescription.value = false;
- };
-
- const swipeUpHandler = () => {
-   console.log("up")
-   showDescription.value = true;
- };
- 
  const handleClosePoi = () => {
    showDescription.value = false;
    selectedMarker.value = false
  };
  
-
  const handleClick = (poi, currentPosition) => {
+  
+   showDescription.value = false;
    setSelectedMarker(poi);
    isUnlocked.value = unlocked(currentPosition.center, [poi.position.lat, poi.position.lon]);
  };

@@ -63,7 +63,7 @@ export function boundsUpdated (NewBounds) {
    bounds.value = NewBounds;
 }
 
-export const unlocked = (currentPosition, poiPosition) => {
+export const  unlocked = (currentPosition, poiPosition) => {
    const dist = getDistance(currentPosition, poiPosition)
    console.log(dist)
    if (dist < 1500) {
