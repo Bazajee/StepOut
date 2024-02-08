@@ -1,5 +1,6 @@
 import L from "leaflet"
 import { ref, watch } from "vue"
+import locked from '/src/assets/locked.png';
 
 export function getDistance(from, to) {
    return L.latLng(from).distanceTo(to);
@@ -14,7 +15,7 @@ export const bounds = ref(null)
 export const center = ref({"lat":0,"lng":0})
 export const options = ref({zoomControl: false})
 export const zoom = ref(16)
-
+// export const iconUrl = ref(locked)
 export const circle = ref({
    center: [0, 0],
    radius: 10,
@@ -63,10 +64,9 @@ export function boundsUpdated (NewBounds) {
    bounds.value = NewBounds;
 }
 
-export const  unlocked = (currentPosition, poiPosition) => {
+export const unlocked = (currentPosition, poiPosition) => {
    const dist = getDistance(currentPosition, poiPosition)
-   console.log(dist)
-   if (dist < 1500) {
+   if (dist < 600) {
       return true
    }
    return false

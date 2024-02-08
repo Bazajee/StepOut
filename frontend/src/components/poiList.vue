@@ -1,7 +1,7 @@
 <template>
    <template v-for="poi in pois">
      <l-marker v-if="isMain(poi.monument_id)" :lat-lng="[poi.position.lat, poi.position.lon]"  @click="handleClick(poi, circle)">
-       <l-icon :icon-size="dynamicSize(poi.monument_id)" :icon-url="monumentIcon.iconUrl" disabled></l-icon>
+       <l-icon :icon-size="dynamicSize(poi.monument_id)" :icon-url="iconUrl(poi, circle)"></l-icon>
      </l-marker>
    </template>
    <div v-if="selectedMarker" v-touch:swipe="onSwipeItem()" class="bottom-banner absolute bottom-0 z-[1500] bg-gray-700 w-full justify-center flex flex-col items-center">
@@ -19,8 +19,9 @@
  import { LMarker, LIcon } from '@vue-leaflet/vue-leaflet';
  import { pois, missFacts, imagesMiss_Facts, monuments, images, imagesMonuments } from '../use/useData.js';
  import { circle, filters, unlocked } from "../use/usePosition";
- import bank from '/src/assets/bank.svg';
-
+ import lockedImg from '/src/assets/locked.png';
+ import unlockedImg from '/src/assets/unlocked.png';
+ 
  const onSwipeItem = () => (direction) => {
    if (isUnlocked.value)
    {
@@ -43,9 +44,9 @@
  const initMonuments = monuments.value;
  const initImage = images.value;
  const initMonumentImage = imagesMonuments.value;
+
  const monumentIcon = ref({
    latlng: [43.60046638168462, 1.454668444693962],
-   iconUrl: bank,
    iconSize: { x: 32, y: 32 }
  });
  
@@ -55,12 +56,18 @@
  };
  
  const handleClick = (poi, currentPosition) => {
-  
    showDescription.value = false;
    setSelectedMarker(poi);
    isUnlocked.value = unlocked(currentPosition.center, [poi.position.lat, poi.position.lon]);
  };
  
+
+ const iconUrl = (poi, currentPosition) => {
+   const isNotLocked = unlocked(currentPosition.center, [poi.position.lat, poi.position.lon]);
+   return isNotLocked ? unlockedImg : lockedImg
+ }
+
+
  const getMonumentImageById = (monumentId) => {
    const image = imagesMonuments.value.find(item => item.monument_id == monumentId);
    if (!image) {
