@@ -1,7 +1,7 @@
 <script setup>
 import { ref, computed } from "vue";
 import router from "../router";
-import  { authUserObject }  from "../use/useStateMenu.js"
+import {authUserObject} from "../use/useAuth"
 import {
   monumentsListReady,
   poisListReady,
@@ -73,7 +73,7 @@ async function submitForm() {
     missFactsListReady.value = false;
     router.push("map/");
     
-    authUserObject = await response.json();
+    authUserObject.value = await response.json();
     console.log(authUserObject.name);
   } else {
     if (showPasswordInput.value) {
