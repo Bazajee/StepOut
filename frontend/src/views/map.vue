@@ -11,6 +11,9 @@
          <UserButton></UserButton>
          <FilterBar></FilterBar>
       </div>
+      <div>
+         <UserMenu></UserMenu>
+      </div>
    </div>
 </template>
 
@@ -21,6 +24,7 @@
    import UserButton from '../components/userButton.vue';
    import PoiList from '../components/poiList.vue';
    import CurrentPosition from "../components/currentPosition.vue"
+   import UserMenu from '../components/userMenu.vue';
    import { center, options, zoom, load, zoomUpdated, boundsUpdated, centerUpdated } from '../use/usePosition';
    import Live from "../components/live.vue"
 
