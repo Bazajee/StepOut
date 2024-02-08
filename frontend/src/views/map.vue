@@ -5,13 +5,24 @@
          <l-tile-layer :url="url" :attribution="attribution"></l-tile-layer>
          <CurrentPosition></CurrentPosition>
          <PoiList :zoom="zoom"></PoiList>
+
       </l-map>
       
-      <div class="flex">
-         <UserButton></UserButton>
-         <FilterBar></FilterBar>
+      <div>
+         <div class="flex">
+            <UserButton></UserButton>
+            <FilterBar></FilterBar>
+            
+         </div>
+         <div>
+         <UserMenu></UserMenu>
+         </div>
+         
+         
       </div>
+      
    </div>
+
 </template>
 
 <script setup>
@@ -20,6 +31,7 @@
    import FilterBar from '../components/filterBar.vue';
    import UserButton from '../components/userButton.vue';
    import PoiList from '../components/poiList.vue';
+   import UserMenu from '../components/userMenu.vue';
    import CurrentPosition from "../components/currentPosition.vue"
    import { center, options, zoom, load, zoomUpdated, boundsUpdated, centerUpdated } from '../use/usePosition';
    import Live from "../components/live.vue"
