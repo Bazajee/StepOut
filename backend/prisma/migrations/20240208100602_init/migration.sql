@@ -4,7 +4,8 @@ CREATE TABLE "poi" (
     "adresse_forme_editoriale" TEXT NOT NULL,
     "commune" TEXT NOT NULL,
     "code_insee" INTEGER NOT NULL,
-    "position" JSONB NOT NULL
+    "position" JSONB NOT NULL,
+    "monument_id" TEXT NOT NULL
 );
 
 -- CreateTable
@@ -14,8 +15,7 @@ CREATE TABLE "monument" (
     "name" TEXT NOT NULL,
     "description" TEXT NOT NULL,
     "author" TEXT NOT NULL,
-    "period" TEXT NOT NULL,
-    "poi_id" TEXT NOT NULL
+    "period" TEXT NOT NULL
 );
 
 -- CreateTable
@@ -53,9 +53,6 @@ CREATE UNIQUE INDEX "poi_id_key" ON "poi"("id");
 CREATE UNIQUE INDEX "monument_id_key" ON "monument"("id");
 
 -- CreateIndex
-CREATE UNIQUE INDEX "monument_poi_id_key" ON "monument"("poi_id");
-
--- CreateIndex
 CREATE UNIQUE INDEX "monument_images_id_key" ON "monument_images"("id");
 
 -- CreateIndex
@@ -66,9 +63,6 @@ CREATE UNIQUE INDEX "images_id_key" ON "images"("id");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "User_email_key" ON "User"("email");
-
--- AddForeignKey
-ALTER TABLE "monument" ADD CONSTRAINT "monument_poi_id_fkey" FOREIGN KEY ("poi_id") REFERENCES "poi"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "monument_images" ADD CONSTRAINT "monument_images_monument_id_fkey" FOREIGN KEY ("monument_id") REFERENCES "monument"("id") ON DELETE RESTRICT ON UPDATE CASCADE;

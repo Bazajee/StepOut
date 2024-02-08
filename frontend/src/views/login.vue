@@ -1,7 +1,7 @@
 <script setup>
-   import { ref, computed } from 'vue'
-import router from '../router';
-import {monumentsListReady, poisListReady, imageListisReady, imagesMonumentListReady, imagesMiss_FactListReady, missFactsListReady } from '../use/useData.js'
+  import { ref, computed } from 'vue'
+  import router from '../router';
+  import { monumentsListReady, poisListReady, imageListisReady, imagesMonumentListReady } from '../use/useData.js'
    const formData = ref ({
      email: "",
      firstName:"",
@@ -52,8 +52,6 @@ import {monumentsListReady, poisListReady, imageListisReady, imagesMonumentListR
     poisListReady.value = false
     imageListisReady.value = false
     imagesMonumentListReady.value = false
-    imagesMiss_FactListReady.value = false
-    missFactsListReady.value = false
     router.push('map/')
    }
    else

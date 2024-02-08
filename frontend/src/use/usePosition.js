@@ -1,6 +1,5 @@
 import L from "leaflet"
 import { ref, watch } from "vue"
-import locked from '/src/assets/locked.png';
 
 export function getDistance(from, to) {
    return L.latLng(from).distanceTo(to);

@@ -16,7 +16,6 @@ const prisma = new PrismaClient();
 
 app.use(express.json());
 
-
 // ====> Authentification <==============================================================================================================================================================================================================================================================================================================================
 
 app.post("/api/authentification", async (req, res) => {
@@ -41,8 +40,8 @@ app.post("/api/authentification", async (req, res) => {
       maxAge: 24 * 60 * 60 * 1000,
     });
     res.send(
-      JSON.stringify(userObject.email, userObject.name, userObject.firstName)
-    );
+      JSON.stringify({email: userObject.email, name:userObject.name, firstName: userObject.firstName})
+    ) 
   } else {
     return res.status(401).send("Unauthorized");
   }
@@ -94,7 +93,7 @@ app.get("/api/monument", async (req, res) => {
     for (const monument of monumentsList) {
       monumentsObject[monument.id] = monument;
     }
-    console.log("monumentsList", monumentsObject);
+    // console.log("monumentsList", monumentsObject);
     res.send(monumentsObject);
   } catch (err) {
     console.error(err);
@@ -129,7 +128,7 @@ app.get("/api/poi", async (req, res) => {
     for (const poi of poisList) {
       poisObject[poi.id] = poi;
     }
-    console.log("pois", poisObject);
+    console.log("pois", poisList);
     res.send(poisObject);
   } catch (err) {
     console.error(err);
@@ -154,7 +153,7 @@ app.get("/api/images", async (req, res) => {
     for (const image of imagesList) {
       imagesObject[image.id] = image;
     }
-    console.log("images", imagesObject);
+    // console.log("images", imagesObject);
     res.send(imagesObject);
   } catch (err) {
     console.error(err);
@@ -179,7 +178,7 @@ app.get("/api/monumentimage", async (req, res) => {
     for (const monumentimage of monumentimagesList) {
       monumentimagesObject[monumentimage.id] = monumentimage;
     }
-    console.log("monumentimages", monumentimagesObject);
+    // console.log("monumentimages", monumentimagesObject);
     res.send(monumentimagesObject);
   } catch (err) {
     console.error(err);

@@ -11,6 +11,7 @@ model poi {
   commune                  String
   code_insee               Int
   position                 Json
+  monument_id              String
 
   monuments monument?
 }

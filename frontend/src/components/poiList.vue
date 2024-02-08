@@ -17,11 +17,11 @@
  <script setup>
  import { ref, computed} from 'vue';
  import { LMarker, LIcon } from '@vue-leaflet/vue-leaflet';
- import { pois, missFacts, imagesMiss_Facts, monuments, images, imagesMonuments } from '../use/useData.js';
+ import { pois, monuments, images, imagesMonuments } from '../use/useData.js';
  import { circle, filters, unlocked } from "../use/usePosition";
  import lockedImg from '/src/assets/locked.png';
  import unlockedImg from '/src/assets/unlocked.png';
- 
+
  const onSwipeItem = () => (direction) => {
    if (isUnlocked.value)
    {
@@ -91,23 +91,23 @@
    return monument ? display : false;
  };
  
- const initimagesMiss_Facts = imagesMiss_Facts.value;
- const initmissFacts = missFacts.value;
- const getMissFactImageById = (monumentId) => {
-   const image = imagesMiss_Facts.value.find(item => item.misc_fact_id == monumentId);
-   if (!image) {
-     return false;
-   }
-   const url_image = images.value.find(item => item.id == image.image_id);
-   // Utilisez l'URL complète pour récupérer l'image du backend
-   return url_image ? `api/getImage/${url_image.url}` : false;
- };
+//  const initimagesMiss_Facts = imagesMiss_Facts.value;
+//  const initmissFacts = missFacts.value;
+//  const getMissFactImageById = (monumentId) => {
+//    const image = imagesMiss_Facts.value.find(item => item.misc_fact_id == monumentId);
+//    if (!image) {
+//      return false;
+//    }
+//    const url_image = images.value.find(item => item.id == image.image_id);
+//    // Utilisez l'URL complète pour récupérer l'image du backend
+//    return url_image ? `api/getImage/${url_image.url}` : false;
+//  };
  
- const getMiscName = (monumentId) => {
-   const monument = missFacts.value.find(item => item.id == monumentId);
-   url_image_current.value = getMissFactImageById(monument.id);
-   return monument ? monument.name : null;
- };
+//  const getMiscName = (monumentId) => {
+//    const monument = missFacts.value.find(item => item.id == monumentId);
+//    url_image_current.value = getMissFactImageById(monument.id);
+//    return monument ? monument.name : null;
+//  };
  
   // Get Monument name and set image url
   const getMonumentDescription = (monumentId) => {
@@ -117,7 +117,7 @@
  // Fonction pour définir le marqueur sélectionné
  const setSelectedMarker = (poi) => {
    selectedMarker.value= {}
-   selectedMarker.value["title"] = (Number.isInteger(poi.monument_id) ? getMonumentName(poi.monument_id) : getMiscName(poi.misc_id));
+   selectedMarker.value["title"] = getMonumentName(poi.monument_id);
    selectedMarker.value["description"] = getMonumentDescription(poi.monument_id);
  }
  

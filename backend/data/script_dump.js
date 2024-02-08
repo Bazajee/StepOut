@@ -20,6 +20,7 @@ async function main() {
           commune: poi.commune,
           code_insee: poi.code_insee,
           position: poi.position,
+          monument_id: poi.monument_id + "",
         },
       });
     }
