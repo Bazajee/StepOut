@@ -12,6 +12,7 @@ export default defineConfig(({ command, mode }) => {
          proxy: {
             '^/api/.*': {
                target: 'http://localhost:3500',
+               // target: 'http://map.domelier.fr',
                ws: true,
                secure: false,
                changeOrigin: true,

@@ -39,13 +39,13 @@ app.get("/api/auth", async (req, res) => {
 app.post("/api/auth", async (req, res) => {
    // grab data from request
    const reqData = req.body;
-   
    // get user object in the reqData who match with the mail in the request
    const userObject = await prisma.user.findUnique({
       where: {
          email: reqData.email,
       },
    });
+   
    // compare hash from db with pwd from req
    const compare = await bcrypt.compare(
       reqData.password,
@@ -90,7 +90,19 @@ app.post("/api/sign_in", async (req, res) => {
             passwordHash: hash,
          },
       });
-      res.sendStatus(200);
+      const token = jwt.sign({}, TOKEN_KEY);
+      res.cookie("authCookie", token, {
+         sameSite: true,
+         maxAge: 24 * 60 * 60 * 1000,
+      });
+      res.status(200)
+      res.send(
+         JSON.stringify({
+            email: reqData.email,
+            name: reqData.name,
+            firstName: reqData.firstName,
+         })
+      );
    } else {
       // return error
       res.sendStatus(404);
