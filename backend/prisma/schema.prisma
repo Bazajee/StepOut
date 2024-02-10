@@ -5,7 +5,7 @@ generator client {
   provider = "prisma-client-js"
 }
 
-model poi {
+model Poi {
   id                       String @unique
   adresse_forme_editoriale String
   commune                  String
@@ -13,10 +13,10 @@ model poi {
   position                 Json
   monument_id              String
 
-  monuments monument?
+  monument Monument[]
 }
 
-model monument {
+model Monument {
   id          String  @unique
   is_main     Boolean
   name        String
@@ -24,42 +24,39 @@ model monument {
   author      String
   period      String
 
-  pois   poi    @relation(fields: [poi_id], references: [id])
+  poi    Poi?   @relation(fields: [poi_id], references: [id])
   poi_id String @unique
 
-  image monument_images[]
+  image Monument_images[]
 }
 
-model monument_images {
-  id          String   @unique
-  image_id String @unique
-  monument_id String
-  
-  
-  monument    monument @relation(fields: [monument_id], references: [id])
-  image    images @relation(fields: [image_id], references: [id])
-  
-}
-
-model images {
+model Monument_images {
   id          String @unique
+  image_id    String @unique
+  monument_id String
+
+  monument Monument @relation(fields: [monument_id], references: [id])
+  image    Images   @relation(fields: [image_id], references: [id])
+}
+
+model Images {
+  id          String  @unique
   url         String
   author      String
-  source      String ?
+  source      String?
   description String
   name        String
 
-  monument_image monument_images? 
+  monument_image Monument_images?
 }
 
 model User {
-    id                  Int                 @id @default(autoincrement())
-    email               String                @unique
-    passwordHash        String
-    name                String
-    firstName           String
+  id           Int    @id @default(autoincrement())
+  email        String @unique
+  passwordHash String
+  name         String
+  firstName    String
 }
-
 
 datasource db {
   provider = "postgresql"

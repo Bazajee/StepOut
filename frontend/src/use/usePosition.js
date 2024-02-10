@@ -6,8 +6,8 @@ export function getDistance(from, to) {
 }
 
 export const filters = ref([
-      { id: 1, text: 'Main', done: true },
-      { id: 2, text: 'Normal', done: true },
+      { id: 1, text: 'Immanquable', done: true },
+      { id: 2, text: 'Intéressant', done: true },
    ])
 
 export const bounds = ref(null)

@@ -8,7 +8,7 @@
       </l-map>
       
       <div class="flex">
-         <UserButton></UserButton>
+         <userMenuButton></userMenuButton>
          <FilterBar></FilterBar>
       </div>
       <div>
@@ -21,7 +21,7 @@
    import { LCircleMarker, LMap, LTileLayer } from '@vue-leaflet/vue-leaflet';
    import { ref } from 'vue'
    import FilterBar from '../components/filterBar.vue';
-   import UserButton from '../components/userButton.vue';
+   import userMenuButton from '../components/userMenuButton.vue';
    import PoiList from '../components/poiList.vue';
    import CurrentPosition from "../components/currentPosition.vue"
    import UserMenu from '../components/userMenu.vue';
